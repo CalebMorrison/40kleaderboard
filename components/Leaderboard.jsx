@@ -108,7 +108,7 @@ export default function Leaderboard() {
     if (loading) return (
         <div className="flex justify-center items-center h-48">
             <svg
-                className="animate-spin h-10 w-10 text-emerald-600"
+                className="animate-spin h-10 w-10 text-red-950"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -148,7 +148,7 @@ export default function Leaderboard() {
                             value={passwordInput}
                             onChange={(e) => setPasswordInput(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && onPasswordSubmit()}
-                            className="w-full border border-gray-300 rounded px-3 py-2 mb-2 focus:outline-none focus:ring focus:ring-emerald-400 text-black"
+                            className="w-full border border-gray-300 rounded px-3 py-2 mb-2 focus:outline-none focus:ring focus:ring-red-950 text-black"
                             autoFocus
                         />
                         {passwordError && (
@@ -163,7 +163,7 @@ export default function Leaderboard() {
                             </button>
                             <button
                                 onClick={onPasswordSubmit}
-                                className="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition"
+                                className="px-4 py-2 bg-red-950 text-white rounded hover:bg-red-950 transition"
                             >
                                 Submit
                             </button>
@@ -176,7 +176,7 @@ export default function Leaderboard() {
                 <h2 className="text-3xl font-extrabold text-gray-900 mb-6 text-center">40k Escalation League Leaderboard</h2>
 
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-emerald-600 text-white">
+                    <thead className="bg-red-950 text-white">
                         <tr>
                             <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">#</th>
                             <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Player</th>
@@ -217,7 +217,7 @@ export default function Leaderboard() {
                                         `${player.wins} - ${player.losses}`
                                     )}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-emerald-700">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-red-950">
                                     {isEditing ? (
                                         <input
                                             type="number"
@@ -238,7 +238,7 @@ export default function Leaderboard() {
                 <div className="mt-6 flex justify-center gap-4">
                     {!isEditing ? (
                         <button
-                            className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded transition"
+                            className="bg-red-950 hover:bg-red-950 text-white px-6 py-2 rounded transition"
                             onClick={openPasswordPrompt}
                         >
                             Edit Leaderboard
