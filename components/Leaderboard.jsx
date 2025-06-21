@@ -169,14 +169,14 @@ export default function Leaderboard() {
                         <tr>
                             <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">#</th>
                             <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Player</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Record</th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Record W-L-T</th>
                             <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Total Points</th>
                         </tr>
                     </thead>
 
                     <tbody className="bg-white divide-y divide-gray-200">
                         {(isEditing ? editValues : leaderboardData).map((player, i) => (
-                            <tr key={i} className={i % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                            <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-red-50'}>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {i + 1}
                                 </td>
@@ -201,9 +201,17 @@ export default function Leaderboard() {
                                                 onChange={(e) => handleChange(e, i)}
                                                 className="w-16 border border-gray-300 rounded px-2 ml-1"
                                             />
+                                            -
+                                            <input
+                                                type="number"
+                                                name="ties"
+                                                value={player.ties}
+                                                onChange={(e) => handleChange(e, i)}
+                                                className="w-16 border border-gray-300 rounded px-2 ml-1"
+                                            />
                                         </>
                                     ) : (
-                                        `${player.wins} - ${player.losses}`
+                                        `${player.wins} - ${player.losses} - ${player.ties}`
                                     )}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-red-950">
