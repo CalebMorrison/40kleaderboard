@@ -10,6 +10,7 @@ export default function Page() {
         className="absolute inset-0 bg-cover bg-center -z-10"
         style={{ backgroundImage: "url('/backgroundImage.jpg')" }}
       ></div>
+      <div className="h-10"></div>
 
       {/* Leaderboard */}
       <div className="relative">

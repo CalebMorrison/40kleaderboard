@@ -161,7 +161,7 @@ export default function Leaderboard() {
                 </div>
             )}
 
-            <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
+            <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg">
                 <h2 className="text-3xl font-extrabold text-gray-900 mb-6 text-center">40k Escalation League Leaderboard</h2>
 
                 <table className="min-w-full divide-y divide-gray-200">
