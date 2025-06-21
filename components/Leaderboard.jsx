@@ -12,20 +12,10 @@ export default function Leaderboard() {
     const [passwordError, setPasswordError] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
 
-    const apiKey = process.env.NEXT_PUBLIC_JSONBIN_API_KEY;
-    const binId = process.env.NEXT_PUBLIC_JSONBIN_BIN_ID;
-    const EDIT_PASSWORD = process.env.NEXT_PUBLIC_EDIT_PASSWORD;
-
-    const fetchUrl = `https://api.jsonbin.io/v3/b/${binId}/latest`;
-    const putUrl = `https://api.jsonbin.io/v3/b/${binId}`;
-
     useEffect(() => {
         setLoading(true);
-        fetch(fetchUrl, {
-            headers: {
-                'X-Master-Key': apiKey,
-                'Content-Type': 'application/json',
-            },
+        fetch('api/leaderboardApi', {
+            method: 'GET'
         })
             .then((res) => res.json())
             .then((body) => {
@@ -44,7 +34,7 @@ export default function Leaderboard() {
                 setError('Could not load leaderboard.');
                 setLoading(false);
             });
-    }, [apiKey, binId, fetchUrl]);
+    }, []);
 
     const openPasswordPrompt = () => {
         setPasswordInput('');
@@ -52,12 +42,16 @@ export default function Leaderboard() {
         setShowPasswordPrompt(true);
     };
 
+    const onPasswordSubmit = async () => {
+        const res = await fetch('/api/validate-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: passwordInput }),
+        });
 
-    const onPasswordSubmit = () => {
-        if (passwordInput === EDIT_PASSWORD) {
+        if (res.ok) {
             setShowPasswordPrompt(false);
             setIsEditing(true);
-            // Clone current leaderboard for editing
             setEditValues(leaderboardData.map((p) => ({ ...p })));
         } else {
             setPasswordError('Incorrect password, please try again.');
@@ -84,17 +78,12 @@ export default function Leaderboard() {
     const saveEditAll = async () => {
         setSaving(true);
         try {
-            const res = await fetch(putUrl, {
+            const res = await fetch('/api/leaderboardApi', {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Master-Key': apiKey,
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(editValues),
             });
             if (!res.ok) throw new Error('Failed to save changes');
-
-            // Update displayed leaderboard and exit edit mode
             setLeaderboardData(editValues);
             setIsEditing(false);
             setEditValues([]);
