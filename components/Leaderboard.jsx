@@ -174,7 +174,7 @@ export default function Leaderboard() {
                         </tr>
                     </thead>
 
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="bg-white divide-y divide-gray-200 shadow-lg">
                         {(isEditing ? editValues : leaderboardData).map((player, i) => (
                             <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-red-50'}>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
